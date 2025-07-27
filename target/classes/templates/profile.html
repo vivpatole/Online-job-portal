@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-top: 30px;
+        }
+
+        .job-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .job-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            margin: 10px 0;
+            width: 300px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <p>Username: <span th:text="${user.username}"></span></p>
+
+    <h2>Posted Jobs</h2>
+    <div class="job-list">
+        <div th:each="job : ${user.jobs}" class="job-item">
+            <h3 th:text="${job.title}"></h3>
+        </div>
+    </div>
+
+    <a href="/saved-jobs">View Saved Jobs</a>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post a Job</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Post a New Job</h2>
+        <form th:action="@{/add-job}" method="post" th:object="${job}">
+            <label>Job Title</label>
+            <input type="text" th:field="*{title}" placeholder="Enter job title" required>
+
+            <label>Company</label>
+            <input type="text" th:field="*{company}" placeholder="Enter company name" required>
+
+            <label>Location</label>
+            <input type="text" th:field="*{location}" placeholder="Enter location" required>
+
+            <label>Description</label>
+            <textarea th:field="*{description}" placeholder="Enter job description" required></textarea>
+
+            <button type="submit">Post Job</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Saved Jobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .job-card {
+            background-color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .job-card h3 {
+            color: #007bff;
+            margin-top: 0;
+        }
+
+        .job-card p {
+            margin: 5px 0;
+        }
+
+        .no-saved-jobs {
+            color: #888;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Saved Jobs</h1>
+
+    <div th:if="${#lists.isEmpty(savedJobs)}" class="no-saved-jobs">
+        <p>No saved jobs yet.</p>
+    </div>
+
+    <div class="job-list">
+        <div th:each="savedJob : ${savedJobs}" class="job-card">
+            <h3 th:text="${savedJob.job.title}"></h3>
+            <p><strong>Company:</strong> <span th:text="${savedJob.job.company}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${savedJob.job.description}"></span></p>
+        </div>
+    </div>
+</body>
+</html>

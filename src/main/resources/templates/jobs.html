@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Jobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .job-card {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .job-card:hover {
+            transform: scale(1.03);
+        }
+
+        .job-card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .job-card p {
+            margin: 5px 0;
+        }
+
+        .no-jobs {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .post-job-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .post-job-link:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Jobs</h1>
+
+    <div th:if="${#lists.isEmpty(jobs)}" class="no-jobs">
+        <p>No jobs found.</p>
+    </div>
+
+    <div th:each="job : ${jobs}" class="job-list">
+        <div class="job-card">
+            <h3 th:text="${job.title}"></h3>
+            <p><strong>Company:</strong> <span th:text="${job.company}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${job.description}"></span></p>
+        </div>
+    </div>
+
+    <a href="/post-job" class="post-job-link">Post a New Job</a>
+</body>
+</html>

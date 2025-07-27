@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .logout-btn {
+            background-color: #ff4d4d;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .job-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 15px;
+            transition: transform 0.3s;
+        }
+
+        .job-card:hover {
+            transform: scale(1.05);
+        }
+
+        .job-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .job-company {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .job-location {
+            color: #999;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .job-description {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .apply-btn {
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        	.apply-btn:hover {
+            background-color: #45a049;
+        }
+        	.message-success {
+   		 	background-color: #d4edda;
+    		color: #155724;
+		    border: 1px solid #c3e6cb;
+		    padding: 10px;
+		    border-radius: 5px;
+		    margin: 15px auto;
+		    width: 50%;
+		    text-align: center;
+		}	
+
+			.message-error {
+		    background-color: #f8d7da;
+		    color: #721c24;
+		    border: 1px solid #f5c6cb;
+		    padding: 10px;
+		    border-radius: 5px;
+		    margin: 15px auto;
+		    width: 50%;
+		    text-align: center;
+		}
+		.post-job-btn {
+		    background-color: #007bff;
+		    color: white;
+		    padding: 10px 15px;
+		    text-decoration: none;
+		    border-radius: 5px;
+		    font-size: 14px;
+		    border-radius: 8px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+		.post-job-btn:hover {
+		    background-color: #0056b3;
+		     transform: scale(1.05);
+		}
+		.post-job-btn:active {
+		    background-color: #3e8e41;
+		}
+		.search-job-btn {
+		    background-color: #4CAF50;
+		    border: none;
+		    color: white;
+		    padding: 12px 24px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 14px;
+		    border-radius: 8px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+		
+		.search-job-btn:hover {
+		    background-color: #45a049;
+		    transform: scale(1.05);
+		}
+		
+		.search-job-btn:active {
+		    background-color: #3e8e41;
+		}
+    </style>
+</head>
+<body>
+
+    <h1>😊Welcome Home!🙏</h1>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+
+    <h2>Available Jobs</h2>
+
+    <div style="text-align:center; margin-bottom: 20px;">
+        <a th:href="@{/post-job}" class="post-job-btn">Post Your Job</a> |
+        <a th:href="@{/search-job}" class="search-job-btn">Search Job</a>
+    </div>
+
+    <div th:if="${message}" class="message-success">
+        <p th:text="${message}"></p>
+    </div>
+
+    <div th:if="${error}" class="message-error">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div th:if="${#lists.isEmpty(jobs)}">
+        <p style="text-align:center;">No Jobs Available Right Now!!</p>
+    </div>
+    </div>
+    
+
+</body>
+</html>
+
+</html>
